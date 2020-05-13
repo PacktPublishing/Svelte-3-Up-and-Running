@@ -1,29 +1,31 @@
 {#await listPromise}
     Loading…
 {:then list}
+    <h2 class="text-2xl font-bold mb-2 text-gray-800">Journal entries on {day}</h2>
     {#if !list.length}
-        <div class="alert alert-info" role="alert">
-            Nothing posted on {(new Date(date * 1000)).toLocaleDateString()}!
+        <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-2 mx-6">
+            Nothing posted on {day}!
         </div>
     {:else}
-        <ul>
+        <ul class="ml-6 space-y-2">
             {#each list as el}
                 {#if el && el.oid && el.date}
-                    <li on:click={showObject(el.oid)}>{new Date(el.date * 1000).toLocaleTimeString()}</li>
+                    <li class="cursor-pointer bg-white shadow py-2 px-4 w-1/2 lg:w-2/5" on:click={showObject(el.oid)}>{new Date(el.date * 1000).toLocaleTimeString()}</li>
                 {/if}
             {/each}
         </ul>
     {/if}
 {:catch err}
-    <div class="alert alert-danger" role="alert">
-        {err}
-    </div>
+    <ErrorBox {err} />
 {/await}
 
 <script>
+import ErrorBox from './ErrorBox.svelte'
 import {view, token} from '../stores'
 
 export let date = null
+
+$: day = (new Date(date * 1000)).toLocaleDateString()
 
 let listPromise = Promise.resolve([])
 $: listPromise = loadList(date)
