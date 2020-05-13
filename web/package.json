@@ -1,0 +1,35 @@
+{
+  "name": "svelte-app-sample",
+  "version": "0.1.0",
+  "description": "Sample app built with Svelte 3",
+  "author": "Alessandro Segala (@ItalyPaleAle)",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "idtoken-verifier": "2.0.2",
+    "markdown-it": "10.0.0",
+    "svelte-calendar": "1.5.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.4.2",
+    "cssnano": "^4.1.10",
+    "dotenv-webpack": "^1.7.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-html": "^6.0.0",
+    "html-webpack-plugin": "^4.0.1",
+    "serve": "^11.3.0",
+    "svelte": "^3.20.1",
+    "svelte-loader": "^2.13.6",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-plugin-serve": "^0.12.1",
+    "webpack-subresource-integrity": "^1.4.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production npx webpack",
+    "dev": "NODE_ENV=development npx webpack",
+    "eslint": "npx eslint -c .eslintrc.js --ext .js,.html .",
+    "lint": "npm run eslint"
+  }
+}
