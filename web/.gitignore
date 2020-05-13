@@ -1,7 +1,8 @@
 # Compiled files
-dist/*
-!dist/.gitinclude
-!dist/assets
+public/*
+!public/index.html
+!public/.gitinclude
+!public/assets
 
 # NPM lockfile
 package-lock.json
