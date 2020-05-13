@@ -1,8 +1,4 @@
-<div class="row justify-content-md-center">
-    <div class="col-6">
-        <AddForm on:added={added}/>
-    </div>
-</div>
+<AddForm on:added={added}/>
 
 <script>
 import AddForm from './AddForm.svelte'
