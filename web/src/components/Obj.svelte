@@ -3,12 +3,12 @@
 {:then content}
     {@html content}
 {:catch err}
-    <div class="alert alert-danger" role="alert">
-        {err}
-    </div>
+    <ErrorBox {err} />
 {/await}
 
 <script>
+import ErrorBox from './ErrorBox.svelte'
+
 import MarkdownIt from 'markdown-it'
 import {token} from '../stores'
 

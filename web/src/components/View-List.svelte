@@ -1,13 +1,5 @@
-<div class="row justify-content-md-center">
-    <div class="col-6">
-        <Calendar bind:date />
-    </div>
-</div>
-<div class="row justify-content-md-center">
-    <div class="col-11">
-        <List bind:date />
-    </div>
-</div>
+<Calendar bind:date />
+<List bind:date />
 
 <script>
 import Calendar from './Calendar.svelte'

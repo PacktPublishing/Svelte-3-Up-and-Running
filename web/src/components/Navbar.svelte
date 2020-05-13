@@ -1,20 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <span class="navbar-brand">
-    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Journal
-  </span>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <span class="nav-item nav-link {(active == 'home') ? 'active' : ''}" on:click={() => $view = null}>
+<nav class="bg-white w-full shadow">
+  <div class="w-full lg:w-3/5 container mx-auto px-2 flex flex-wrap items-center justify-between">
+    <div class="my-4 pl-4 md:pl-0 text-lg">
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Journal
+    </div>
+    <div class="my-4 pr-4 md:pr-0">
+      <span class="ml-4 cursor-pointer {(active == 'home') ? 'text-blue-600 underline' : ''}" on:click={() => $view = null}>
         Home
-        {#if active == 'home'}
-          <span class="sr-only">(current)</span>
-        {/if}
       </span>
-      <span class="nav-item nav-link {(active == 'add') ? 'active' : ''}" on:click={() => $view = 'add'}>
+      <span class="ml-4 cursor-pointer {(active == 'add') ? 'text-blue-600 underline' : ''}" on:click={() => $view = 'add'}>
         Add
-        {#if active == 'add'}
-          <span class="sr-only">(current)</span>
-        {/if}
       </span>
     </div>
   </div>
