@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Svelte PoC Sample Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.min.css" integrity="sha256-ct5KWWMn5eSjQCQkdJrskmSppUJDoXwUlBQXCZcISPk=" crossorigin="anonymous" />
+</head>
+
+<body class="bg-gray-200">
+    <div class="flex h-screen">
+        <div class="w-full max-w-xs m-auto">
+            <form id="auth-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="auth-username" type="text" placeholder="Username" value="svelte">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="auth-password" type="password" placeholder="••••••" value="svelte">
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Sign In</button>
+                <p id="auth-form-error" style="display: none;" class="mt-4 text-red-500 text-xs italic"></p>
+            </form>
+            <p class="text-center text-gray-500 text-xs"><a class="underline" href="https://github.com/ItalyPaleAle/Svelte-PoC-Server">Svelte PoC Sample Server</a></p>
+        </div>
+    </div>
+
+<script>
+;(() => {
+    document.getElementById('auth-form').addEventListener('submit', (event) => {
+        // Prevent the page to be refreshed
+        event.preventDefault()
+
+        // Reset the error
+        FormError(null)
+        
+        // Get the username and password
+        const username = document.getElementById('auth-username').value
+        const password = document.getElementById('auth-password').value
+        if (!username || !password) {
+            FormError('Empty username and/or password')
+            return false
+        }
+
+        // Get the client_id, redirect_uri, and nonce from the querystring
+        const qs = new URLSearchParams(window.location.search)
+        if (!qs || !qs.has('client_id')) {
+            FormError('Empty client_id value in the querystring')
+            return false
+        }
+        const redirectUri = qs.has('redirect_uri') && qs.get('redirect_uri')
+        if (!redirectUri) {
+            FormError('Empty redirect_uri value in the querystring')
+            return false
+        }
+        const nonce = qs.has('nonce') && qs.get('nonce')
+        if (!nonce) {
+            FormError('Empty nonce value in the querystring')
+            return false
+        }
+        
+        // Parameters for the request's body
+        const reqBody = {
+            username,
+            password,
+            client_id: qs.get('client_id'),
+            nonce
+        }
+        Promise.resolve()
+            // Submit the request
+            .then(() => fetch('/authorize/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(reqBody)
+                })
+            )
+            // Parse the response body's JSON
+            .then((resp) => resp.json())
+            // Redirect to the redirect_uri and append the id_token
+            .then((data) => {
+                if (!data || !data.id_token) {
+                    throw (data && data.error) || 'Request error'
+                }
+                
+                window.location.assign(redirectUri + '#id_token=' + data.id_token)
+            })
+            // In case of errors…
+            .catch((err) => FormError(err))
+
+        return false
+    })
+})()
+
+function FormError(err) {
+    const el = document.getElementById('auth-form-error')
+    if (err) {
+        el.style.display = 'block'
+        el.innerText = err
+    }
+    else {
+        el.style.display = 'none'
+    }
+}
+</script>
+</body>
+
+</html>
