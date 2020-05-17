@@ -42,7 +42,7 @@ func main() {
 
 	// If we're in production mode, set Gin to "release" mode
 	env := os.Getenv("ENV")
-	if env == "production" {
+	if env != "development" {
 		gin.SetMode(gin.ReleaseMode)
 	}
 

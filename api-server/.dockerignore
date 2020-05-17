@@ -1,0 +1,12 @@
+# Compiled files
+bin
+.bin
+.packr
+packrd/
+*-packr.go
+
+# Development
+old/
+data/
+test/
+test.sh
