@@ -5,7 +5,7 @@ set -e
 # Delete existing builds if any
 rm -rf bin || true
 mkdir -p bin
-BUILD_VERSION=$(date -u +'%Y%m%d%H%M%S')
+BUILD_VERSION=$(date -u +'%Y%m%d%H%M')
 
 # Build using Docker
 GO_BUILDER_IMAGE=golang:1.14-alpine
