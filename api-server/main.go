@@ -55,7 +55,8 @@ func main() {
 	// Enable CORS
 	corsConfig := cors.DefaultConfig()
 	corsConfig.AllowAllOrigins = true
-	corsConfig.AddAllowHeaders("Authorization")
+	corsConfig.AddAllowHeaders("authorization", "x-object-title", "x-object-date")
+	corsConfig.AddExposeHeaders("date", "x-object-title", "x-object-date")
 	router.Use(cors.New(corsConfig))
 
 	// Add all routes

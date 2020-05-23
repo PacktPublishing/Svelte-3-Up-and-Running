@@ -15,6 +15,7 @@ type IndexFile []IndexElement
 type IndexElement struct {
 	ObjectId string `json:"oid"`
 	Date     int64  `json:"date"`
+	Title    string `json:"title,omitempty"`
 }
 
 func getIndex(clientId string) (index IndexFile, tag interface{}, err error) {
@@ -44,7 +45,7 @@ func getIndex(clientId string) (index IndexFile, tag interface{}, err error) {
 	return index, tag, nil
 }
 
-func addToIndex(clientId string, objectId string) (err error) {
+func addToIndex(clientId string, objectId string, title string) (err error) {
 	// Get the current index
 	index, tag, err := getIndex(clientId)
 	if err != nil {
@@ -55,6 +56,7 @@ func addToIndex(clientId string, objectId string) (err error) {
 	index = append(index, IndexElement{
 		ObjectId: objectId,
 		Date:     time.Now().Unix(),
+		Title:    title,
 	})
 
 	// Encode the updated index

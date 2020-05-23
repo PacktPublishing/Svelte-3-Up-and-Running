@@ -287,17 +287,27 @@ export const attempts = new AuthenticationAttempts()
  * Main function that handles sessions: checks if there's an id_token in the page's URL, parses and validates it.
  * If there's no session, redirects the user to the authentication URL.
  *
+ * @param {number} [maxAttempts=1] - Maximum number of attempts before stopping redirecting users; set to 0 to disable (e.g. always redirect)
  * @returns {[Object,string]} An array where the first element is the dictionary with the user's profile, made of all the claims included in the JWT, and the second element is the raw JWT
  * @async
  */
-export async function HandleSession() {
+export async function HandleSession(maxAttempts) {
+    // Default value
+    if (maxAttempts === undefined || maxAttempts === null) {
+        maxAttempts = 1
+    }
+
+    // Get the profile
     const profile = await GetProfile()
 
     // If we're not authenticated, and this is the first attempt, automatically redirect users
     if (!profile) {
-        if (attempts.increaseAttempts() < 1) {
+        if (maxAttempts < 1 || attempts.increaseAttempts() < maxAttempts) {
             window.location.href = credentials.authorizationUrl()
             return [null, '']
+        }
+        else {
+            console.error('No profile returned, but do not redirect because maximum attempts have passed')
         }
     }
 

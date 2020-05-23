@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "idtoken-verifier": "2.0.3",
-    "markdown-it": "10.0.0",
+    "markdown-it": "11.0.0",
     "svelte-calendar": "1.5.0"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid"
@@ -27,8 +28,35 @@ func GetObjectHandler(c *gin.Context) {
 		return
 	}
 
+	// Get the index to get the title
+	index, _, err := getIndex(clientId)
+	if err != nil {
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+	title := ""
+	var date time.Time
+	found := false
+	for _, el := range index {
+		if el.ObjectId == objectId {
+			found = true
+			date = time.Unix(el.Date, 0)
+			title = el.Title
+			break
+		}
+	}
+	if !found {
+		// Object was not in the index
+		c.AbortWithStatusJSON(http.StatusNotFound, NewErrorResponse("Object not found"))
+		return
+	}
+
+	// Return the date and title as headers
+	c.Header("x-object-date", date.In(time.FixedZone("GMT", 0)).Format(time.RFC1123))
+	c.Header("x-object-title", title)
+
 	// Get the object and return it to the client
-	found, _, err := storeInstance.Get(clientId+"/"+objectId, c.Writer)
+	found, _, err = storeInstance.Get(clientId+"/"+objectId, c.Writer)
 	if !found {
 		c.AbortWithStatusJSON(http.StatusNotFound, NewErrorResponse("Object not found"))
 		return

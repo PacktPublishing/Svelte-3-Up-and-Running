@@ -1,12 +1,13 @@
+import './global.css'
+
 import App from './App.svelte'
 
 import {HandleSession} from './lib/Session'
-
 import {profile, token} from './stores'
 
 const app = (async function() {
     // Load profile and check session
-    const [profileData, tokenData] = await HandleSession()
+    const [profileData, tokenData] = await HandleSession(0)
     profile.set(profileData || null)
     token.set(tokenData || null)
 

@@ -1,18 +1,17 @@
 {#await contentPromise}
     Loading…
-{:then content}
-    {@html content}
+{:then el}
+    <p class="mb-2 italic">Saved on {new Date(el.date).toLocaleString()}</p>
+    <Renderer title={el.title} content={el.content} />
 {:catch err}
     <ErrorBox {err} />
 {/await}
 
 <script>
+import Renderer from './Renderer.svelte'
 import ErrorBox from './ErrorBox.svelte'
 
-import MarkdownIt from 'markdown-it'
 import {token} from '../stores'
-
-const markdown = new MarkdownIt()
 
 export let objectId = null
 let contentPromise = Promise.resolve('')
@@ -35,8 +34,13 @@ async function loadObject(oid) {
         throw Error('Response is empty')
     }
 
-    const responseHtml = markdown.render(responseText)
+    const date = response.headers.get('x-object-date')
+    const title = response.headers.get('x-object-title')
 
-    return responseHtml
+    return {
+        date,
+        title,
+        content: responseText
+    }
 }
 </script>

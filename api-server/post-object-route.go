@@ -14,6 +14,7 @@ const maxObjectsPerClient = 200
 
 type postObjectBody struct {
 	Content string `form:"content" json:"content"`
+	Title   string `form:"title" json:"title"`
 }
 
 // PostObjectHandler is the handler for the POST /object endpoint, which stores a new object
@@ -23,6 +24,7 @@ func PostObjectHandler(c *gin.Context) {
 
 	// Check if we have a multipart form with a file
 	var objectId string
+	title := ""
 	mpf, err := c.MultipartForm()
 	if mpf != nil && len(mpf.File) > 0 {
 		// Get the file from the input
@@ -44,6 +46,9 @@ func PostObjectHandler(c *gin.Context) {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
+
+		// Get the title
+		title = c.PostForm("title")
 	} else {
 		// Try binding the form and read the "content" value
 		var body postObjectBody
@@ -62,10 +67,13 @@ func PostObjectHandler(c *gin.Context) {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
+
+		// Title
+		title = body.Title
 	}
 
 	// Update the index
-	err = addToIndex(clientId, objectId)
+	err = addToIndex(clientId, objectId, title)
 	if err != nil {
 		// Remove the file from storage
 		_ = storeInstance.Delete(clientId+"/"+objectId, nil)

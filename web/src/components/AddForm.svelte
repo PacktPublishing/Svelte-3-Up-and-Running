@@ -1,5 +1,9 @@
 <form class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" on:submit|preventDefault={submit}>
     <div class="mb-4">
+        <label for="addform-title" class="block text-gray-700 font-bold mb-2">Title:</label>
+        <input type="text" class="shadow-inner appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" bind:value={title} />
+    </div>
+    <div class="mb-4">
         <label for="addform-content" class="block text-gray-700 font-bold mb-2">Content:</label>
         <textarea id="addform-content" class="shadow-inner appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline textarea-tall" bind:value={content}></textarea>
     </div>
@@ -22,9 +26,11 @@ import {createEventDispatcher} from 'svelte'
 
 import {token} from '../stores'
 
+export let content
+export let title
+
 const dispatch = createEventDispatcher()
 
-let content
 let formError = null
 let running = false
 async function submit() {
@@ -44,6 +50,7 @@ async function submit() {
 
     // Send request
     const formData = new FormData()
+    formData.append('title', title)
     formData.append('content', content)
     try {
         const response = await fetch(process.env.API_URL + '/object', {
