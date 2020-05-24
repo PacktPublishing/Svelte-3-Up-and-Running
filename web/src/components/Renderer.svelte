@@ -13,8 +13,8 @@
 
 <script>
 // Props for the view
-export let title
-export let content
+export let title = ''
+export let content = ''
 
 // Markdown renderer
 import MarkdownIt from 'markdown-it'

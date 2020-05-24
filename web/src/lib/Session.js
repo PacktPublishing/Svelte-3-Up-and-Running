@@ -225,8 +225,8 @@ export class Credentials {
         if (!process.env.AUTH_CLIENT_ID) {
             throw Error('Empty AUTH_CLIENT_ID env variable')
         }
-        if (!process.env.JWKS_URL) {
-            throw Error('Empty JWKS_URL env variable')
+        if (!process.env.AUTH_JWKS_URL) {
+            throw Error('Empty AUTH_JWKS_URL env variable')
         }
 
         // Check the format
@@ -236,7 +236,7 @@ export class Credentials {
 
         // Validate the token
         const verifier = new IdTokenVerifier({
-            jwksURI: process.env.JWKS_URL,
+            jwksURI: process.env.AUTH_JWKS_URL,
             issuer: process.env.AUTH_ISSUER,
             audience: process.env.AUTH_CLIENT_ID
         })

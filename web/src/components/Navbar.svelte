@@ -4,10 +4,14 @@
       <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Journal
     </div>
     <div class="my-4 pr-4 md:pr-0">
-      <span class="ml-4 cursor-pointer {(active == 'home') ? 'text-blue-600 underline' : ''}" on:click={() => $view = null}>
+      <span
+        class="ml-4 cursor-pointer {(active == 'home') ? 'text-blue-600 underline' : ''}"
+        on:click={() => $view = null}>
         Home
       </span>
-      <span class="ml-4 cursor-pointer {(active == 'add') ? 'text-blue-600 underline' : ''}" on:click={() => $view = 'add'}>
+      <span
+        class="ml-4 cursor-pointer {(active == 'add') ? 'text-blue-600 underline' : ''}"
+        on:click={() => $view = 'add'}>
         Add
       </span>
     </div>

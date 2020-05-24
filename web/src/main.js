@@ -1,9 +1,9 @@
 import './global.css'
 
-import App from './App.svelte'
+import {HandleSession} from './lib/Session.js'
+import {profile, token} from './stores.js'
 
-import {HandleSession} from './lib/Session'
-import {profile, token} from './stores'
+import App from './App.svelte'
 
 const app = (async function() {
     // Load profile and check session
@@ -12,7 +12,7 @@ const app = (async function() {
     token.set(tokenData || null)
 
     // Crete a Svelte app by loading the main view
-    window.svelteApp = new App({
+    return new App({
         target: document.body
     })
 })()

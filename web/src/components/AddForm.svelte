@@ -23,8 +23,8 @@
 
 <script>
 import {createEventDispatcher} from 'svelte'
-
-import {token} from '../stores'
+import {AddRequest} from '../lib/Requests.js'
+import {token} from '../stores.js'
 
 export let content
 export let title
@@ -49,28 +49,9 @@ async function submit() {
     formError = null
 
     // Send request
-    const formData = new FormData()
-    formData.append('title', title)
-    formData.append('content', content)
     try {
-        const response = await fetch(process.env.API_URL + '/object', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Authorization': 'Bearer ' + $token
-            }
-        })
-
-        if (response.status < 200 || response.status >= 400) {
-            throw Error('Invalid response status code: ' + response.status)
-        }
-
-        const responseData = await response.json()
-        if (!responseData || !responseData.objectId) {
-            throw Error('Invalid response: no objectId')
-        }
-
-        dispatch('added', {objectId: responseData.objectId})
+        const objectId = await AddRequest(title, content, $token)
+        dispatch('added', {objectId})
     }
     catch (err) {
         console.error(err)

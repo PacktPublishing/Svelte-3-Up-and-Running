@@ -10,37 +10,10 @@
 <script>
 import Renderer from './Renderer.svelte'
 import ErrorBox from './ErrorBox.svelte'
-
-import {token} from '../stores'
+import {LoadObject} from '../lib/Requests.js'
+import {token} from '../stores.js'
 
 export let objectId = null
 let contentPromise = Promise.resolve('')
-$: contentPromise = loadObject(objectId)
-
-async function loadObject(oid) {
-    const response = await fetch(process.env.API_URL + '/object/' + oid, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + $token
-        }
-    })
-
-    if (response.status < 200 || response.status >= 400) {
-        throw Error('Invalid response status code: ' + response.status)
-    }
-
-    const responseText = await response.text()
-    if (!responseText) {
-        throw Error('Response is empty')
-    }
-
-    const date = response.headers.get('x-object-date')
-    const title = response.headers.get('x-object-title')
-
-    return {
-        date,
-        title,
-        content: responseText
-    }
-}
+$: contentPromise = LoadObject(objectId, $token)
 </script>
