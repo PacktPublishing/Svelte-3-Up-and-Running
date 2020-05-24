@@ -13,10 +13,10 @@
 <script>
 // Components
 import Navbar from './components/Navbar.svelte'
-import ViewAdd from './components/View-Add.svelte'
-import ViewObject from './components/View-Object.svelte'
-import ViewList from './components/View-List.svelte'
+import ViewAdd from './components/ViewAdd.svelte'
+import ViewObject from './components/ViewObject.svelte'
+import ViewList from './components/ViewList.svelte'
 
 // Stores
-import {view} from './stores'
+import {view} from './stores.js'
 </script>

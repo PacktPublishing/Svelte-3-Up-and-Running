@@ -10,9 +10,8 @@
     <ul class="ml-6 space-y-2">
       {#each list as el}
         {#if el && el.oid && el.date}
-          <li
-            class="cursor-pointer bg-white shadow py-2 px-4 w-2/3 lg:w-3/5"
-            on:click={showObject(el.oid)}>
+          <li class="cursor-pointer bg-white shadow py-2 px-4 w-2/3 lg:w-3/5"
+            on:click={() => showObject(el.oid)}>
               {new Date(el.date * 1000).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
               <b>{el.title || '(no title)'}</b>
           </li>

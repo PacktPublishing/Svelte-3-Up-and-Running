@@ -29,7 +29,7 @@
 
 <style>
 .textarea-tall {
-    height: calc(80vh - 14em);
+    height: calc(75vh - 14em);
 }
 </style>
 
@@ -44,7 +44,6 @@ const dispatch = createEventDispatcher()
 // Props for the view
 export let content
 export let title
-
 
 let formError = null
 let running = false

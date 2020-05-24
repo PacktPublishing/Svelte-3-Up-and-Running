@@ -19,7 +19,7 @@
 </nav>
 
 <script>
-import {view} from '../stores'
+import {view} from '../stores.js'
 
 let active
 $: {
