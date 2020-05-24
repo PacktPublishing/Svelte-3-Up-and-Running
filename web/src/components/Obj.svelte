@@ -1,10 +1,13 @@
 {#await contentPromise}
-    Loading…
+  Loading…
 {:then el}
-    <p class="mb-2 italic">Saved on {new Date(el.date).toLocaleString()}</p>
-    <Renderer title={el.title} content={el.content} />
+  <p class="mb-2 italic">
+    Saved on
+    {(el && el.date) ? new Date(el.date).toLocaleString() : '(null)'}
+  </p>
+  <Renderer title={el && el.title || ''} content={el && el.content || ''} />
 {:catch err}
-    <ErrorBox {err} />
+  <ErrorBox {err} />
 {/await}
 
 <script>
@@ -14,6 +17,6 @@ import {LoadObject} from '../lib/Requests.js'
 import {token} from '../stores.js'
 
 export let objectId = null
-let contentPromise = Promise.resolve('')
+let contentPromise = Promise.resolve({})
 $: contentPromise = LoadObject(objectId, $token)
 </script>

@@ -21,6 +21,23 @@ func GetObjectHandler(c *gin.Context) {
 	// Get the clientId
 	clientId := c.MustGet("clientId").(string)
 
+	// Check if we're requesting the sample object
+	if objectId == "00000000-0000-0000-0000-000000000000" {
+		// Sleep a little bit to make the client wait
+		time.Sleep(3 * time.Second)
+
+		// Return headers and content
+		c.Header("x-object-date", time.Now().In(time.FixedZone("GMT", 0)).Format(time.RFC1123))
+		c.Header("x-object-title", "Sample object")
+		c.Writer.WriteString(`# This is a sample object
+It works!
+
+And this is **Markdown** that is being rendered for you.
+`)
+		c.AbortWithStatus(http.StatusOK)
+		return
+	}
+
 	// Ensure objectId is a UUID
 	objectIdUUID, err := uuid.FromString(objectId)
 	if err != nil || objectIdUUID.Version() != 4 {

@@ -2,6 +2,7 @@
   "name": "svelte-poc",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "webpack.config.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
