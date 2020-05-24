@@ -1,4 +1,4 @@
-<Obj objectId="00000000-0000-0000-0000-000000000000" />
+<ViewAdd />
 <script>
-import Obj from './components/Obj.svelte'
+import ViewAdd from './components/ViewAdd.svelte'
 </script>
