@@ -1,7 +1,7 @@
 {#await listPromise}
   Loading…
 {:then list}
-  <h2 class="text-2xl font-bold mb-2 text-gray-800">Journal entries on{day}</h2>
+  <h2 class="text-2xl font-bold mb-2 text-gray-800">Journal entries on {day}</h2>
   {#if !list.length}
     <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-2 mx-6">
       Nothing posted on {day}!
