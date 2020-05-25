@@ -1,12 +1,14 @@
 # Compiled files
 public/*
+!public/index.html
 !public/.gitinclude
 !public/assets
-!public/index.html
 
 # NPM lockfile
 package-lock.json
 
+# Additional Env files
+.env-*
 
 # Created by https://www.gitignore.io/api/node,macos,linux,windows,visualstudiocode
 
