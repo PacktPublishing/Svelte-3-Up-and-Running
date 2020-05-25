@@ -47,6 +47,9 @@ export async function LoadList(start, token) {
         return Promise.resolve([])
     }
 
+    // Remove all decimals
+    start = parseInt(start, 10)
+
     // Calculate the end of the day
     // We can't just add 24 hours because in most time zones, one day per year is 23 hours, and one is 25 (when DST starts and ends)
     const end = new Date(start * 1000)
