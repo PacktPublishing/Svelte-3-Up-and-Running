@@ -12,11 +12,9 @@
 </div>
 
 <script>
-// Props for the view
 export let title = ''
 export let content = ''
 
-// Markdown renderer
 import MarkdownIt from 'markdown-it'
 const markdown = new MarkdownIt()
 
