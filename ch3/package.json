@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --content-base public"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "cross-env": "^7.0.2",
     "css-loader": "^3.5.3",
