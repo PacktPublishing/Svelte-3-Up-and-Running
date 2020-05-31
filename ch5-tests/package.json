@@ -1,0 +1,35 @@
+{
+  "name": "svelte-poc-ch4",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server --content-base public",
+    "lint": "npx eslint -c .eslintrc.js --ext .js,.svelte,.html ."
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "dotenv-webpack": "^1.8.0",
+    "eslint": "^7.1.0",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "mini-css-extract-plugin": "^0.9.0",
+    "style-loader": "^1.2.1",
+    "svelte": "^3.22.2",
+    "svelte-loader": "^2.13.6",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "idtoken-verifier": "^2.0.3",
+    "markdown-it": "^11.0.0",
+    "svelte-calendar": "^1.5.0",
+    "svelte-spa-router": "^2.2.0"
+  }
+}
