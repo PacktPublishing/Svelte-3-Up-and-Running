@@ -10,15 +10,15 @@
 
 <script>
 import {fade} from 'svelte/transition'
+import {push} from 'svelte-spa-router'
 import AddForm from './AddForm.svelte'
 import Renderer from './Renderer.svelte'
-import {view} from '../stores.js'
 
 let content = ''
 let title = ''
 function added(event) {
     if (event && event.detail && event.detail.objectId) {
-        $view = 'view/' + event.detail.objectId
+        push('/view/' + event.detail.objectId)
     }
 }
 </script>
