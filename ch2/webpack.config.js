@@ -50,5 +50,5 @@ module.exports = {
     devServer: {
         port: 5000
     },
-    devtool: prod ? false: 'source-map'
+    devtool: prod ? false : 'source-map'
 }
