@@ -17,20 +17,25 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-18.04
     steps:
+    # Check out the source code
     - uses: actions/checkout@v2
+    # Install Node.js
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ env.NODE_VERSION }}
+    # Install dependencies from NPM, then build and test the application
     - name: npm install, build, and test
       run: |
         npm install
         npm run build
         npm run test --if-present
+    # Authenticate with Azure
     - name: Login to Azure
       uses: Azure/login@v1.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    # Copy the app bundle to Azure Storage
     - name: Copy files to Azure Storage
       uses: azure/CLI@v1
       with:
@@ -39,6 +44,7 @@ jobs:
             --source public \
             --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
             --destination '$web'
+    # Purge the CDN cache
     - name: Purge CDN cache
       uses: azure/CLI@v1
       with:
