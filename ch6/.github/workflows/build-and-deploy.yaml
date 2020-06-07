@@ -1,0 +1,51 @@
+on:
+  - push
+
+env:
+  # Set this to the name of your Resource Group on Azure containing the CDN profile
+  RESOURCE_GROUP: 'Svelte-App'
+  # Name of the Azure Storage Account containing your app
+  STORAGE_ACCOUNT_NAME: 'sveltejournal'
+  # Name of your Azure CDN profile
+  CDN_PROFILE_NAME: 'Svelte-App-CDN'
+  # Name of your Azure CDN endpoint
+  CDN_ENDPOINT: 'sveltejournalcdn'
+  NODE_VERSION: '12.x'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build
+        npm run test --if-present
+    - name: Login to Azure
+      uses: Azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Copy files to Azure Storage
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az storage blob upload-batch \
+            --source public \
+            --account-name ${{ env.STORAGE_ACCOUNT_NAME }} \
+            --destination '$web'
+    - name: Purge CDN cache
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az cdn endpoint purge \
+            --profile-name ${{ env.CDN_PROFILE_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --name ${{ env.CDN_ENDPOINT }} \
+            --content-paths '/*' \
+            --no-wait
