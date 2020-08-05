@@ -1,11 +1,11 @@
 {#await contentPromise}
   Loading…
-{:then el}
+{:then response}
   <p class="mb-2 italic">
     Saved on
-    {(el && el.date) ? new Date(el.date).toLocaleString() : '(null)'}
+    {(response && response.date) ? new Date(response.date).toLocaleString() : '(null)'}
   </p>
-  <Renderer title={el && el.title || ''} content={el && el.content || ''} />
+  <Renderer title={response && response.title || ''} content={response && response.content || ''} />
 {:catch err}
   <ErrorBox {err} />
 {/await}
