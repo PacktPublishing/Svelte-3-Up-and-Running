@@ -1,6 +1,6 @@
 # Svelte 3 Up and Running, published by Packt
 
-This repository contains the sample code for the [Svelte 3 Up and Running](https://www.packtpub.com/web-development/svelte-3-up-and-running) book by Alessandro Segala ([ItalyPaleAle](https://github.com/ItalyPaleAle), published by Packt.
+This repository contains the sample code for the [Svelte 3 Up and Running](https://www.packtpub.com/web-development/svelte-3-up-and-running) book by Alessandro Segala ([ItalyPaleAle](https://github.com/ItalyPaleAle)), published by Packt.
 
 ## API Server
 
