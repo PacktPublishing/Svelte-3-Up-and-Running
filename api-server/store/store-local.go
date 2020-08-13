@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/PacktPublishing/Svelte.js-3-Proof-of-Concept/api-server/utils"
+	"github.com/PacktPublishing/Svelte-3-Up-and-Running/api-server/utils"
 
 	homedir "github.com/mitchellh/go-homedir"
 )

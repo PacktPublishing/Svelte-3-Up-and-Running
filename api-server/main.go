@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/PacktPublishing/Svelte.js-3-Proof-of-Concept/api-server/store"
+	"github.com/PacktPublishing/Svelte-3-Up-and-Running/api-server/store"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"

@@ -1,4 +1,4 @@
-module github.com/PacktPublishing/Svelte.js-3-Proof-of-Concept/api-server
+module github.com/PacktPublishing/Svelte-3-Up-and-Running/api-server
 
 go 1.14
 
