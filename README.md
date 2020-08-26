@@ -99,7 +99,7 @@ With the following software and hardware list you can run all code files present
 
 ## Get to Know the Author
 **Alessandro Segala**
-is a Product Manager at Microsoft working on developer tools. He has over a decade of experience building full-stack web applications, having worked as a professional developer as well as contributing to multiple open source projects. Alessandro is the maintainer of svelte-spa-router, one of the most popular client-side routers for Svelte 3
+is a Product Manager at Microsoft working on developer tools. He has over a decade of experience building full-stack web applications, having worked as a professional developer as well as contributing to multiple open source projects. Alessandro is the maintainer of svelte-spa-router, one of the most popular client-side routers for Svelte 3.
 
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
