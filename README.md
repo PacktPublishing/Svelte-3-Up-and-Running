@@ -80,7 +80,7 @@ In the `ch*` folders, you can find the sample code for each chapter of the book.
 **Following is what you need for this book:**
 The book is for frontend or full-stack developers looking to build modern web apps with Svelte. Web developers with experience in leading frontend JavaScript frameworks who wish to learn Svelte will find this book useful. The book assumes a solid understanding of JavaScript and core HTML5 technologies. Basic understanding of modern frontend frameworks will be beneficial, but not necessary.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-15).
+With the following software and hardware list you can run all code files present in the book (Chapter 1-7).
 
 ### Software and Hardware List
 
