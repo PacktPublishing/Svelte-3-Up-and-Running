@@ -30,7 +30,7 @@ if (test expression)
   Statement upon condition is true
 }
 ```
-### API Server
+### API server
 
 Throughout the book, you'll be building a sample Journaling application with Svelte 3 that runs within a web browser. Like most front-end applications, the sample app comes with a back-end API server that is used to authenticate users and offer persistent storage for the data. 
 
