@@ -93,9 +93,9 @@ With the following software and hardware list you can run all code files present
 | 6    | Microsoft Azure           | Windows, Mac OS X, and Linux (Any) |
 
 ### Related products <Other books you may enjoy>
-* Linux: Powerful Server Administration [[Packt]](https://www.packtpub.com/networking-and-servers/linux-powerful-server-administration?utm_source=github&utm_medium=repository&utm_campaign=9781788293778) [[Amazon]](https://www.amazon.com/dp/1788293770)
+* Hands-On JavaScript High Performance [[Packt]](https://www.packtpub.com/product/hands-on-javascript-high-performance/9781838821098) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
-* Linux Device Drivers Development [[Packt]](https://www.packtpub.com/networking-and-servers/linux-device-drivers-development?utm_source=github&utm_medium=repository&utm_campaign=9781785280009) [[Amazon]](https://www.amazon.com/dp/1788293770)
+* Clean Code in JavaScript [[Packt]](https://www.packtpub.com/product/clean-code-in-javascript/9781789957648) [[Amazon]](https://www.amazon.com/dp/1788293770)
 
 ## Get to Know the Author
 **Alessandro Segala**
