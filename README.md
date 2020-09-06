@@ -86,11 +86,9 @@ With the following software and hardware list you can run all code files present
 
 | Chapter  | Software required                   | OS required                        |
 | -------- | ------------------------------------| -----------------------------------|
-| 1 to 7        | Node.js 8 or higher with NPM                    | Windows, Mac OS X, and Linux (Any) |
-| 1 to 7       | Webpack            | Windows, Mac OS X, and Linux (Any) |
-| 1 to 7      | Svelte          | Windows, Mac OS X, and Linux (Any) |
-|1 to 7      | Visual Studio Code           | Windows, Mac OS X, and Linux (Any) |
-| 6    | Microsoft Azure           | Windows, Mac OS X, and Linux (Any) |
+| 1 to 7        | Node.js 10 or higher with NPM                    | Windows, macOS, and Linux (Any) |
+| 6    | Microsoft Azure subscription or free trial           | Windows, macOS, and Linux (Any) |
+| 6    | GitHub Account           | Windows, macOS, and Linux (Any) |
 
 ### Related products <Other books you may enjoy>
 * Hands-On JavaScript High Performance [[Packt]](https://www.packtpub.com/product/hands-on-javascript-high-performance/9781838821098) [[Amazon]](https://www.amazon.com/dp/1838821090)
